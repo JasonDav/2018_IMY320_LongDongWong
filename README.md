@@ -10,6 +10,8 @@ _Please note that this group does not possess a member that is currently enrolle
 # Design
 ### Overview
 Our design for the website is a single scrollable page. We want the general look and feel of the page to be minimal but functional. The page will consist (possibly) of no [Navigation](###navigation) as a result of being completely scrollable. The different sections will describe their relative content in a unique color. This gives each section their own feeling. The colors will be dependent on the predominant color pallet of the image visual that we select, in order to tie the whole section together and maintain that mental coupling of its contents.
+
+The initial concept sketch is available [here](/Proposal/sketch.png).
 ### Look and Feel
 The webpage will adhere to a minimalist design philosophy - less is more. As such the website will be a single page and will be a continuous scroll experience, this promotes a unification in the processing of the content we provide the user.
 The color pallet of the webpage will consist of a black or dark background and non-foreground elements will appear in a lighter shade of either color. The different content sections will each have a unique bright contrasting color to stand out against the background of the webpage. This creates an eye catching effect and when we color text the same color as these headings, they become easier to associate and remember.
