@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html style="height:100%;width: 100%;">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	
+	var screenWidth;
+	var screenHeight;
+	function init()
+	{
+		screenWidth = $(window).width();
+		screenHeight = $(window).height();
+
+		console.log('Width: '+screenWidth);
+		console.log('Height: '+screenHeight);
+
+		// document.getElementById("body").width=screenWidth;
+		// document.getElementById('body').height=screenHeight;
+
+	    document.getElementById('intro-vid').addEventListener('ended',myHandler,false);
+	    function myHandler(e) {
+	        document.getElementById("intro-image").hidden = null;
+	        document.getElementById("intro-vid").hidden = "true";
+
+	    }
+
+		$('#myModal').on('show.bs.modal', function (e) {
+		  setAnim('pulse');
+		})
+		$('#myModal').on('hide.bs.modal', function (e) {
+		  setAnim('jello');
+		})
+
+	}
+
+	function setAnim(x) {
+    	$('.modal .modal-dialog').attr('class', 'modal-dialog  ' + x + '  animated');
+	};
+
+
+
+</script>
+	<title>Inlight</title>
+</head>
+<style type="text/css">
+	
+	body {
+		background-color: black;
+	}
+
+	.center-image{
+/*		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%,-50%);*/
+		/*padding-top: 20%;*/
+		position: relative;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%,-50%)
+	}
+
+	.colorSection{
+		height: 3%;
+		background-color: #c32aff;
+		text-align: center;
+	}
+
+	.colorSectionText{
+		position: relative;
+		top: 12%;
+		color: #FFFFFF;
+		font-size: 40.0pt;
+		left: 8%;
+	}
+
+	.img-padding-yeetus{
+		position: relative;
+		top: 15%;
+		left: 8%;
+	}
+
+	 .btn:hover {
+		background-color: white;
+		color: #FF5717;
+	}
+
+	.modal.fade{
+	  opacity:1;
+	}
+	.modal.fade .modal-dialog {
+	   -webkit-transform: translate(0);
+	   -moz-transform: translate(0);
+	   transform: translate(0);
+	}
+
+	html,body{
+		height: 100%;
+		/*width: 100%;*/
+	}
+
+</style>
+<body onload='init()' id="body" class="">
+<audio src="assets/main-theme.mp3" autoplay>
+<p>AHH! You found me! </p>
+</audio>
+
+	
+<div class='h-100 w-100' id="intro-image-offset">
+	<img class="img-responsive center-image" src="assets/inlight-intro.png" hidden id="intro-image"/>	
+ <video id='intro-vid' preload autoplay width="100%" height="100%">
+  <source src="assets/trailer.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video> 
+</div>
+
+</div>
+
+<!-- First Section -->
+
+<!-- Colored Divider - James appears to like this gay purple -->
+<div class="colorSection">
+</div>
+
+<!-- Row class that halves the screen between images and description/heading -->
+<div class="row w-100 h-75">
+	<div class="col-md-6">
+		<!-- Image to display -->
+		<img src="assets/story-anim.gif" class="img-responsive img-padding-yeetus">
+	</div>
+	<!-- Heading and Description section -->
+	<div class="col-md-6">
+		<h1 class="colorSectionText"><b>Story</b></h1>
+		<br><br>
+		<h3 style="color: #FF5717;position: relative;left: 8%;top: 2%">Lorem ipsum dolor sit amet</h3>
+		<br><br>
+		<ul style="color: white; position: relative;left: 5%;">
+			<li>Donec imperdiet vulputate elit, quis mollis erat porttitor eget. </li>
+			<li>Nam eleifend mi id urna convallis, eget commodo augue tristique.</li>
+			<li>Nullam iaculis, sem non rutrum accumsan, arcu libero ultricies lacus, tristique pulvinar.</li>
+			<li> Nunc eget tellus porta, semper arcu non, ultricies urna.</li>
+		</ul>
+		<!-- Button to get more info  -->
+		<button type="button" class="btn btn-lg dankhover" style="position: relative; left: 43%;top: 15%;background-color: #FF5717;color: white;" data-toggle="modal" data-target="#myModal">Read More</button>
+	</div>
+</div>
+
+
+<!-- Second Section -->
+
+<!-- Colored Divider - James appears to like this gay purple -->
+<div class="colorSection">
+</div>
+
+<!-- Row class that halves the screen between images and description/heading -->
+<div class="row w-100 h-75">
+	<!-- Heading and Description section -->
+	<div class="col-md-6">
+		<h1 class="colorSectionText"><b>Gameplay</b></h1>
+		<br><br>
+		<h3 style="color: #FF5717;position: relative;left: 8%;top: 2%">Lorem ipsum dolor sit amet</h3>
+		<br><br>
+		<ul style="color: white; position: relative;left: 5%;">
+			<li>Donec imperdiet vulputate elit, quis mollis erat porttitor eget. </li>
+			<li>Nam eleifend mi id urna convallis, eget commodo augue tristique.</li>
+			<li>Nullam iaculis, sem non rutrum accumsan, arcu libero ultricies lacus, tristique pulvinar.</li>
+			<li> Nunc eget tellus porta, semper arcu non, ultricies urna.</li>
+		</ul>
+	</div>
+	<div class="col-md-6">
+		<!-- Image to display -->
+		<img src="assets/gameplay-anim.gif" class="img-responsive img-padding-yeetus">
+	</div>
+</div>
+
+<div class="row w-100 h-75">
+	<!-- Heading and Description section -->
+	<div class="col-md-6">
+		<br><br>
+		<h3 style="color: #FF5717;position: relative;left: 8%;top: 2%">Lorem ipsum dolor sit amet</h3>
+		<br><br>
+		<ul style="color: white; position: relative;left: 5%;">
+			<li>Donec imperdiet vulputate elit, quis mollis erat porttitor eget. </li>
+			<li>Nam eleifend mi id urna convallis, eget commodo augue tristique.</li>
+			<li>Nullam iaculis, sem non rutrum accumsan, arcu libero ultricies lacus, tristique pulvinar.</li>
+			<li> Nunc eget tellus porta, semper arcu non, ultricies urna.</li>
+		</ul>
+	</div>
+	<div class="col-md-6">
+		<!-- Image to display -->
+		<img src="assets/gameplay3-anim.gif" class="img-responsive img-padding-yeetus">
+	</div>
+</div>
+
+
+<div class="row w-100 h-75">
+	<!-- Heading and Description section -->
+	<div class="col-md-6">
+		<br><br>
+		<h3 style="color: #FF5717;position: relative;left: 8%;top: 2%">Lorem ipsum dolor sit amet</h3>
+		<br><br>
+		<ul style="color: white; position: relative;left: 5%;">
+			<li>Donec imperdiet vulputate elit, quis mollis erat porttitor eget. </li>
+			<li>Nam eleifend mi id urna convallis, eget commodo augue tristique.</li>
+			<li>Nullam iaculis, sem non rutrum accumsan, arcu libero ultricies lacus, tristique pulvinar.</li>
+			<li> Nunc eget tellus porta, semper arcu non, ultricies urna.</li>
+		</ul>
+		<!-- Button to get more info  -->
+		<button type="button" class="btn btn-lg dankhover" style="position: relative; left: 43%;top: 15%;background-color: #FF5717;color: white;" data-toggle="modal" data-target="#myModal">See More</button>
+	</div>
+	<div class="col-md-6">
+		<!-- Image to display -->
+		<img src="assets/gameplay2-anim.gif" class="img-responsive img-padding-yeetus">
+	</div>
+</div>
+
+<!-- Third Section -->
+
+<!-- Colored Divider - James appears to like this gay purple -->
+<div class="colorSection">
+</div>
+
+<!-- Row class that halves the screen between images and description/heading -->
+<div class="row w-100 h-75">
+	<div class="col-md-6">
+		<!-- Image to display -->
+		<img src="assets/custom-anim.gif" class="img-responsive img-padding-yeetus">
+	</div>
+	<!-- Heading and Description section -->
+	<div class="col-md-6">
+		<h1 class="colorSectionText"><b>Customization</b></h1>
+		<br><br>
+		<h3 style="color: #FF5717;position: relative;left: 8%;top: 2%">Masks and Outfits</h3>
+		<br><br>
+		<ul style="color: white; position: relative;left: 5%;">
+			<li>Donec imperdiet vulputate elit, quis mollis erat porttitor eget. </li>
+			<li>Nam eleifend mi id urna convallis, eget commodo augue tristique.</li>
+			<li>Nullam iaculis, sem non rutrum accumsan, arcu libero ultricies lacus, tristique pulvinar.</li>
+			<li> Nunc eget tellus porta, semper arcu non, ultricies urna.</li>
+		</ul>
+
+	</div>
+</div>
+
+<div class="row w-100 h-75">
+	<div class="col-md-6">
+		<!-- Image to display -->
+		<img src="assets/custom2-anim.gif" class="img-responsive img-padding-yeetus">
+	</div>
+	<!-- Heading and Description section -->
+	<div class="col-md-6">
+		<br><br>
+		<h3 style="color: #FF5717;position: relative;left: 8%;top: 2%">Items</h3>
+		<br><br>
+		<ul style="color: white; position: relative;left: 5%;">
+			<li>Donec imperdiet vulputate elit, quis mollis erat porttitor eget. </li>
+			<li>Nam eleifend mi id urna convallis, eget commodo augue tristique.</li>
+			<li>Nullam iaculis, sem non rutrum accumsan, arcu libero ultricies lacus, tristique pulvinar.</li>
+			<li> Nunc eget tellus porta, semper arcu non, ultricies urna.</li>
+		</ul>
+				<!-- Button to get more info  -->
+		<button type="button" class="btn btn-lg dankhover" style="position: relative; left: 43%;top: 15%;background-color: #FF5717;color: white;" data-toggle="modal" data-target="#myModal">See More</button>
+	</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Extra Stuffs</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body" id="myModalBody" style="text-align: center;">
+        This is where additional information and text would come.This is where additional information and text would come.This is where additional information and text would come.This is where additional information and text would come.This is where additional information and text would come.This is where additional information and text would come.This is where additional information and text would come.This is where additional information and text would come.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
