@@ -4,14 +4,19 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script> -->
 <link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/aos.css">
 <script src="js/bootstrap.min.js"></script>
+<script src="js/aos.js"></script>
+<link rel="stylesheet" type="text/css" href="assets/preloader.css">
 <script type="text/javascript">
 	
 	var screenWidth;
 	var screenHeight;
 	var video;
+
+	window.addEventListener('load', AOS.refresh);
 
 	function init()
 	{
@@ -21,18 +26,24 @@
 		console.log('Width: '+screenWidth);
 		console.log('Height: '+screenHeight);
 
+		AOS.init();
+		console.log('Enabled AoS');
+
 		video = document.getElementById("intro-vid");
 
 		video.load();
 
 		//set video finished listener
-	    video.addEventListener('ended',myHandler,false);
-	    function myHandler(e) {
+	    video.onended = function() {
 
 	    	console.log('video ended - displaying image');
 	        document.getElementById("intro-image").hidden = null;
+	        // document.getElementById("play-button").hidden = null;
 	        document.getElementById("intro-vid").hidden = "true";
 	        document.getElementById('audio-main-theme').play();
+	        document.getElementById("big-daddy-div").hidden=null;
+	        // document.getElementById("big-daddy-div").visibility="visible;";
+	        AOS.refresh();
 
 	    }
 
@@ -41,10 +52,11 @@
 
 		  
 		    document.getElementById("preloader-body").hidden = "true";
-		    document.getElementById("big-daddy-div").hidden=null;
-		    video.play();
-		  
+		    document.getElementById("big-daddy-div").hidden="false";
+		    video.play();		  
 		}
+
+
 	}; 
 
     	
@@ -69,12 +81,15 @@
 
 </script>
 	<title>Inlight</title>
-</head>
-<link rel="stylesheet" type="text/css" href="assets/preloader.css">
-<style type="text/css">
+	<style type="text/css">
 	
 	body {
 		background-color: black;
+		overflow-x: hidden;
+	}
+
+	#big-daddy-div{
+		/*visibility:  hidden;*/
 	}
 
 	.center-image{
@@ -98,13 +113,36 @@
 		left: 8%;
 	}
 
-	.img-padding-yeetus{
+	.img-padding-left{
+		border-style: groove;
+		border-width: 2px;
+		border-color: white;
 		position: relative;
 		top: 15%;
 		left: 8%;
+
 	}
 
-	 .btn:hover {
+	.img-padding-right{
+		border-style: groove;
+		border-width: 2px;
+		border-color: white;
+		position: relative;
+		top: 15%;
+		/*right: 3%;*/
+
+	}
+
+/*	div img.playbutton{
+		width: 10%;
+		background-color: #FF5717;
+		position: absolute;
+		top: 75%;
+		left: 45%;
+		transition: translate(-50%,-50%);
+	}*/
+
+	 button.dankhover:hover {
 		background-color: white;
 		color: #FF5717;
 	}
@@ -118,6 +156,14 @@
 	   transform: translate(0);
 	}
 
+	button.button-pos {
+		position: relative; 
+		left: 43%;
+		top: 15%;
+		background-color: #FF5717;
+		color: white;
+	}
+
 
 
 	html,body{
@@ -126,7 +172,8 @@
 	}
 
 </style>
-<body onload='init()' id="body" class="">
+</head>
+<body onload='init();' id="body">
 
 <!-- Preloader -->
 <div class='h-100 w-100' id="preloader-body">
@@ -139,18 +186,17 @@
 </audio>
 
 
-<!-- Bid Daddy Div -->
-<div class="h-100 w-100" id="big-daddy-div" hidden>
-
 <div class='h-100 w-100' id="intro-image-offset">
-	<img class="img-responsive center-image" src="assets/inlight-intro.png" hidden id="intro-image" preload/>	
- <video id='intro-vid' preload width="100%" height="100%">
+	<img class="img-responsive center-image" src="assets/inlight-intro.png" hidden id="intro-image"/>
+	<!-- <img class="playbutton" src="assets/playbutton.png" hidden id="play-button">  -->
+ <video id='intro-vid' preload class="w-100 h-100" controls>
   <source src="assets/trailer.mp4" type="video/mp4">
   RIP Video-kun... Press F to pay respects.
 </video> 
 </div>
 
-
+<!-- Bid Daddy Div -->
+<div class="h-100" id="big-daddy-div">
 
 <!-- First Section -->
 
@@ -160,12 +206,12 @@
 
 <!-- Row class that halves the screen between images and description/heading -->
 <div class="row w-100 h-75">
-	<div class="col-md-6">
+	<div class="col-md-6" data-aos="fade-zoom-in" data-aos-duration="4000ms">
 		<!-- Image to display -->
-		<img src="assets/story-anim.gif" class="img-responsive img-padding-yeetus">
+		<img src="assets/story-anim.gif" class="img-responsive img-padding-left">
 	</div>
 	<!-- Heading and Description section -->
-	<div class="col-md-6">
+	<div class="col-md-6" data-aos="slide-left">
 		<h1 class="colorSectionText"><b>Story</b></h1>
 		<br><br>
 		<h3 style="color: #FF5717;position: relative;left: 8%;top: 2%">Lorem ipsum dolor sit amet</h3>
@@ -177,7 +223,7 @@
 			<li> Nunc eget tellus porta, semper arcu non, ultricies urna.</li>
 		</ul>
 		<!-- Button to get more info  -->
-		<button type="button" class="btn btn-lg dankhover" style="position: relative; left: 43%;top: 15%;background-color: #FF5717;color: white;" data-toggle="modal" data-target="#myModal">Read More</button>
+		<button type="button" class="btn btn-lg button-pos dankhover" data-toggle="modal" data-target="#myModal">Read More</button>
 	</div>
 </div>
 
@@ -191,7 +237,7 @@
 <!-- Row class that halves the screen between images and description/heading -->
 <div class="row w-100 h-75">
 	<!-- Heading and Description section -->
-	<div class="col-md-6">
+	<div class="col-md-6" data-aos="fade-right">
 		<h1 class="colorSectionText"><b>Gameplay</b></h1>
 		<br><br>
 		<h3 style="color: #FF5717;position: relative;left: 8%;top: 2%">Lorem ipsum dolor sit amet</h3>
@@ -203,15 +249,15 @@
 			<li> Nunc eget tellus porta, semper arcu non, ultricies urna.</li>
 		</ul>
 	</div>
-	<div class="col-md-6">
+	<div class="col-md-6" data-aos="fade-zoom-in" data-aos-duration="4000ms">
 		<!-- Image to display -->
-		<img src="assets/gameplay-anim.gif" class="img-responsive img-padding-yeetus">
+		<img src="assets/gameplay-anim.gif" class="img-responsive img-padding-right">
 	</div>
 </div>
 
 <div class="row w-100 h-75">
 	<!-- Heading and Description section -->
-	<div class="col-md-6">
+	<div class="col-md-6" data-aos="fade-right">
 		<br><br>
 		<h3 style="color: #FF5717;position: relative;left: 8%;top: 2%">Lorem ipsum dolor sit amet</h3>
 		<br><br>
@@ -222,16 +268,16 @@
 			<li> Nunc eget tellus porta, semper arcu non, ultricies urna.</li>
 		</ul>
 	</div>
-	<div class="col-md-6">
+	<div class="col-md-6" data-aos="fade-zoom-in" data-aos-duration="4000ms">
 		<!-- Image to display -->
-		<img src="assets/gameplay3-anim.gif" class="img-responsive img-padding-yeetus">
+		<img src="assets/gameplay3-anim.gif" class="img-responsive img-padding-right">
 	</div>
 </div>
 
 
 <div class="row w-100 h-75">
 	<!-- Heading and Description section -->
-	<div class="col-md-6">
+	<div class="col-md-6" data-aos="fade-right">
 		<br><br>
 		<h3 style="color: #FF5717;position: relative;left: 8%;top: 2%">Lorem ipsum dolor sit amet</h3>
 		<br><br>
@@ -242,11 +288,11 @@
 			<li> Nunc eget tellus porta, semper arcu non, ultricies urna.</li>
 		</ul>
 		<!-- Button to get more info  -->
-		<button type="button" class="btn btn-lg dankhover" style="position: relative; left: 43%;top: 15%;background-color: #FF5717;color: white;" data-toggle="modal" data-target="#myModal">See More</button>
+		<button type="button" class="btn btn-lg dankhover button-pos" data-toggle="modal" data-target="#myModal">See More</button>
 	</div>
-	<div class="col-md-6">
+	<div class="col-md-6" data-aos="fade-zoom-in" data-aos-duration="4000ms">
 		<!-- Image to display -->
-		<img src="assets/gameplay2-anim.gif" class="img-responsive img-padding-yeetus">
+		<img src="assets/gameplay2-anim.gif" class="img-responsive img-padding-right">
 	</div>
 </div>
 
@@ -258,12 +304,12 @@
 
 <!-- Row class that halves the screen between images and description/heading -->
 <div class="row w-100 h-75">
-	<div class="col-md-6">
+	<div class="col-md-6" data-aos="fade-zoom-in" data-aos-duration="4000ms">
 		<!-- Image to display -->
-		<img src="assets/custom-anim.gif" class="img-responsive img-padding-yeetus">
+		<img src="assets/custom-anim.gif" class="img-responsive img-padding-left">
 	</div>
 	<!-- Heading and Description section -->
-	<div class="col-md-6">
+	<div class="col-md-6" data-aos="fade-left">
 		<h1 class="colorSectionText"><b>Customization</b></h1>
 		<br><br>
 		<h3 style="color: #FF5717;position: relative;left: 8%;top: 2%">Masks and Outfits</h3>
@@ -279,12 +325,12 @@
 </div>
 
 <div class="row w-100 h-75">
-	<div class="col-md-6">
+	<div class="col-md-6" data-aos="fade-zoom-in" data-aos-duration="4000ms">
 		<!-- Image to display -->
-		<img src="assets/custom2-anim.gif" class="img-responsive img-padding-yeetus">
+		<img src="assets/custom2-anim.gif" class="img-responsive img-padding-left">
 	</div>
 	<!-- Heading and Description section -->
-	<div class="col-md-6">
+	<div class="col-md-6" data-aos="fade-left">
 		<br><br>
 		<h3 style="color: #FF5717;position: relative;left: 8%;top: 2%">Items</h3>
 		<br><br>
@@ -295,7 +341,7 @@
 			<li> Nunc eget tellus porta, semper arcu non, ultricies urna.</li>
 		</ul>
 				<!-- Button to get more info  -->
-		<button type="button" class="btn btn-lg dankhover" style="position: relative; left: 43%;top: 15%;background-color: #FF5717;color: white;" data-toggle="modal" data-target="#myModal">See More</button>
+		<button type="button" class="btn btn-lg dankhover button-pos"  data-toggle="modal" data-target="#myModal">See More</button>
 	</div>
 </div>
 
