@@ -1,4 +1,5 @@
 # 2018_IMY320_TeamNamesSucc
+Live verison available [here](https://jasondav.github.io/2018_IMY320_TeamNamesSucc/).
 # Introduction
 Our group consists of two Computer Science members:
 - Jason Davidson (16044984)
