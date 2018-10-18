@@ -7,6 +7,9 @@
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script> -->
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/aos.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/brands.css" integrity="sha384-Px1uYmw7+bCkOsNAiAV5nxGKJ0Ixn5nChyW8lCK1Li1ic9nbO5pC/iXaq27X5ENt" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/fontawesome.css" integrity="sha384-BzCy2fixOYd0HObpx3GMefNqdbA7Qjcc91RgYeDjrHTIEXqiF00jKvgQG0+zY/7I" crossorigin="anonymous">
+<link href="css/footer.css" rel="stylesheet">
 <script src="js/bootstrap.min.js"></script>
 <script src="js/aos.js"></script>
 <link rel="stylesheet" type="text/css" href="assets/preloader.css">
@@ -15,8 +18,9 @@
 	var screenWidth;
 	var screenHeight;
 	var video;
+	var audio;
 
-	window.addEventListener('load', AOS.refresh);
+	// window.addEventListener('load', AOS.refresh);
 
 	function init()
 	{
@@ -32,6 +36,7 @@
 		video = document.getElementById("intro-vid");
 
 		video.load();
+		video.volume = 0.1;
 
 		//set video finished listener
 	    video.onended = function() {
@@ -39,10 +44,14 @@
 	    	console.log('video ended - displaying image');
 	        document.getElementById("intro-image").hidden = null;
 	        // document.getElementById("play-button").hidden = null;
+
 	        document.getElementById("intro-vid").hidden = "true";
-	        document.getElementById('audio-main-theme').play();
-	        document.getElementById("big-daddy-div").hidden=null;
-	        // document.getElementById("big-daddy-div").visibility="visible;";
+	        audio = document.getElementById('audio-main-theme');
+	        audio.volume = 0.07;
+
+
+
+	        audio.play();	
 	        AOS.refresh();
 
 	    }
@@ -52,27 +61,59 @@
 
 		  
 		    document.getElementById("preloader-body").hidden = "true";
-		    document.getElementById("big-daddy-div").hidden="false";
+		    AOS.refresh();
 		    video.play();		  
 		}
 
 
 	}; 
 
+	function scrollToStory(){
+		document.querySelector('#Story').scrollIntoView({ 
+		  behavior: 'smooth',
+		  block: 'start',
+		  inline: 'nearest'
+		});
+	};
+
+	function scrollToGP(){
+		document.querySelector('#Gameplay').scrollIntoView({ 
+		  behavior: 'smooth',
+		  block: 'start',
+		  inline: 'nearest'
+		});
+	};
+
+	function scrollToCust(){
+		document.querySelector('#Customization').scrollIntoView({ 
+		  behavior: 'smooth',
+		  block: 'start',
+		  inline: 'nearest'
+		});
+	};
+
+	function toggleMute(){
+		if(audio!=null)
+			if(audio.volume==0.0)
+				audio.volume = 0.07;
+			else
+				audio.volume=0.0;
+	}
+
     	
 
-		$('#myModal').on('show.bs.modal', function (e) {
-		  setAnim('pulse');
-		})
-		$('#myModal').on('hide.bs.modal', function (e) {
-		  setAnim('jello');
-		})
+		// $('#myModal').on('show.bs.modal', function (e) {
+		//   setAnim('pulse');
+		// })
+		// $('#myModal').on('hide.bs.modal', function (e) {
+		//   setAnim('jello');
+		// })
 
 	
 
-	function setAnim(x) {
-    	$('.modal .modal-dialog').attr('class', 'modal-dialog  ' + x + '  animated');
-	};
+	// function setAnim(x) {
+ //    	$('.modal .modal-dialog').attr('class', 'modal-dialog  ' + x + '  animated');
+	// };
 
 	// window.onload = function() {
 	  
@@ -82,10 +123,21 @@
 </script>
 	<title>Inlight</title>
 	<style type="text/css">
+
+/*	@font-face {
+    	font-family: bodyfont;
+    	src: url(assets/HighwaytoHell!.otf);
+	}*/
+
+	@font-face {
+    	font-family: MarketDeco;
+    	src: url(assets/Market_Deco.ttf);
+	}
 	
 	body {
 		background-color: black;
 		overflow-x: hidden;
+		font-family: Helvetica;
 	}
 
 	#big-daddy-div{
@@ -106,11 +158,16 @@
 	}
 
 	.colorSectionText{
-		position: relative;
+		/*position: relative;
 		top: 12%;
 		color: #FFFFFF;
-		font-size: 40.0pt;
-		left: 8%;
+		font-size: 50.0px;
+		left: 8%;*/
+		text-align: center;
+		color: #FFFFFF;
+		font-size: 50.0px;
+		font-family: MarketDeco;
+		font-weight: 1500;
 	}
 
 	.img-padding-left{
@@ -165,18 +222,88 @@
 	}
 
 
+	.color-fade-right{
+		width: 100%;
+		/*background-image: linear-gradient(to bottom right, #c32aff, rgba(0,0,0,0));*/
+		background: -moz-linear-gradient(-70deg, rgba(225,9,237,1) 5%, rgba(228,71,237,0.67) 15%, 
+			rgba(228,71,237,0.65) 16%, rgba(228,71,237,0) 49%); 
+	}
+
+	.color-fade-left{
+		width: 100%;
+		/*background-image: linear-gradient(to bottom right, #c32aff, rgba(0,0,0,0));*/
+		background: -moz-linear-gradient(250deg, rgba(225,9,237,1) 0%, rgba(228,71,237,0.67) 15%, rgba(228,71,237,0.65) 16%, rgba(228,71,237,0) 49%); 
+	}
+
+/*	.fnav-link{
+		cursor: pointer;
+		color: white;
+	}
+
+	.fnav-link:hover{
+		color: #FF5717;
+	}*/
+
+	#navmenu ul{
+	  position: fixed;
+	  right: -9%;
+	  top: 50%;
+	  width: 13em;
+	  margin-top: -2.5em;
+	  z-index: 1;
+	  /*color: white;*/
+    
+	}
+
+	#navmenu ul li h5{
+		cursor: pointer;
+		color: transparent;
+
+		transition: all 0.5s ease-in-out;
+	    -webkit-transition: all 0.5s ease-in-out; /** Chrome & Safari **/
+	    -moz-transition: all 0.5s ease-in-out; /** Firefox **/
+	}
+
+	#navmenu ul li h5:hover{
+		color: #FF5717;
+
+	    transform: translate(-60%,0);
+	    -webkit-transform: translate(-60%,0); /** Chrome & Safari **/
+	    -o-transform: translate(-60%,0); /** Opera **/
+	    -moz-transform: translate(-60%,0); /** Firefox **/
+	}
+
+	#navmenu > ul > li > h5 > a{
+		color: inherit;
+		background-color: none;
+	}
 
 	html,body{
 		height: 100%;
 		/*width: 100%;*/
 	}
 
+	img.imagescale{
+		max-width: 90%;
+		max-height: 90%;
+	}
+
+	img.rune{
+		max-width: 15%;
+		max-height: 15%;
+	}
+
+	img.navrune{
+		max-width: 15%;
+		max-height: 15%;
+	}
+
 </style>
 </head>
-<body onload='init();' id="body">
+<body onload='init();' id="body" on>
 
 <!-- Preloader -->
-<div class='h-100 w-100' id="preloader-body">
+<div class='h-100 w-100' id="preloader-body" style="z-index: 2;">
 	<!-- <img class="center-image" src="assets/preloader.gif"> -->
 	<div class="pulse"></div>
 </div>
@@ -187,7 +314,7 @@
 
 
 <div class='h-100 w-100' id="intro-image-offset">
-	<img class="img-responsive center-image" src="assets/inlight-intro.png" hidden id="intro-image"/>
+	<img class="img-responsive center-image " src="assets/inlight-intro.png" hidden id="intro-image"/>
 	<!-- <img class="playbutton" src="assets/playbutton.png" hidden id="play-button">  -->
  <video id='intro-vid' preload class="w-100 h-100" controls>
   <source src="assets/trailer.mp4" type="video/mp4">
@@ -196,172 +323,204 @@
 </div>
 
 <!-- Bid Daddy Div -->
-<div class="h-100" id="big-daddy-div">
+<div class="col h-100" id="big-daddy-div">
+
+<div id="navmenu">
+	<ul style="list-style: none;">
+	<!-- <li><a href="#" onclick="scrollToStory();">Story</a> -->
+	<li><h5  class="fnav-link"><img src="assets/rune.png" class="navrune"> <a href="#Story"> Story</a></h3></li>
+	<li><h5  class="fnav-link"><img src="assets/rune.png" class="navrune"> <a href="#Gameplay"> Gameplay</a></h3></li>
+	<li><h5  class="fnav-link"><img src="assets/rune.png" class="navrune"> <a href="#Customization"> Customize</a></h3></li>
+	<li><img src="assets/mute.png" onclick="toggleMute();" style="cursor: pointer;"></li>
+	</ul>
+	
+</div>
 
 <!-- First Section -->
 
 <!-- Colored Divider - James appears to like this gay purple -->
-<div class="colorSection">
-</div>
+<!-- <div class="colorSection">
+</div> -->
 
 <!-- Row class that halves the screen between images and description/heading -->
-<div class="row w-100 h-75">
+<div class="col w-100 h-75  color-fade-right">
+	<br>
+<h1 class="colorSectionText"><img src="assets/rune-glow.png" class="rune" style="transform: scaleX(-1);">Story<img src="assets/rune-glow.png" class="rune" ></h1>
+<div class="row" >
+
 	<div class="col-md-6" data-aos="fade-zoom-in" data-aos-duration="4000ms">
 		<!-- Image to display -->
-		<img src="assets/story-anim.gif" class="img-responsive img-padding-left">
+		<img src="assets/story-anim.gif" class="img-responsive img-padding-left imagescale">
 	</div>
 	<!-- Heading and Description section -->
-	<div class="col-md-6" data-aos="slide-left">
-		<h1 class="colorSectionText"><b>Story</b></h1>
+	<div class="col-md-6" data-aos="slide-left" id="Story">
+		
 		<br><br>
-		<h3 style="color: #FF5717;position: relative;left: 8%;top: 2%">Lorem ipsum dolor sit amet</h3>
+		<h3 style="color: #FF5717;position: relative;left: 8%;top: 4%">The Darkness Comes</h3>
 		<br><br>
-		<ul style="color: white; position: relative;left: 5%;">
-			<li>Donec imperdiet vulputate elit, quis mollis erat porttitor eget. </li>
-			<li>Nam eleifend mi id urna convallis, eget commodo augue tristique.</li>
-			<li>Nullam iaculis, sem non rutrum accumsan, arcu libero ultricies lacus, tristique pulvinar.</li>
-			<li> Nunc eget tellus porta, semper arcu non, ultricies urna.</li>
+		<ul style="color: white; position: relative;left: 5%;max-width: 85%">
+			<li>The sake of your tribe lies solely in your hands. You alone must resist and slay  the scourge of the endless night on your path to journey through Metnal's nightmares and defeat him.</li>
+			<li>Your focus, accuracy, and patience will be put to the ultimate test as you cleanse the world from his curse. </li>
+			<li>Stop the evil god's hordes and bring the light back while you delve into the mysterious past of the island of Az'kalar.</li>
+			<br>
+			<li>Only light must prevail, will you stand up to the challenge?</li>
 		</ul>
 		<!-- Button to get more info  -->
-		<button type="button" class="btn btn-lg button-pos dankhover" data-toggle="modal" data-target="#myModal">Read More</button>
+		<!-- <button type="button" class="btn btn-lg button-pos dankhover" data-toggle="modal" data-target="#myModal">Read More</button> -->
 	</div>
+</div>
 </div>
 
 
 <!-- Second Section -->
 
 <!-- Colored Divider - James appears to like this gay purple -->
-<div class="colorSection">
-</div>
-
+<!-- <div class="colorSection">
+</div> -->
+<div class="col w-100 h-125 color-fade-left">
+	<br>
+	<h1 class="colorSectionText"><b><img src="assets/rune-glow.png" class="rune" style="transform: scaleX(-1);">Gameplay<img src="assets/rune-glow.png" class="rune" ></b></h1>
 <!-- Row class that halves the screen between images and description/heading -->
 <div class="row w-100 h-75">
+	
 	<!-- Heading and Description section -->
-	<div class="col-md-6" data-aos="fade-right">
-		<h1 class="colorSectionText"><b>Gameplay</b></h1>
+	<div class="col-md-6" data-aos="fade-right" id="Gameplay">
 		<br><br>
-		<h3 style="color: #FF5717;position: relative;left: 8%;top: 2%">Lorem ipsum dolor sit amet</h3>
+		<h3 style="color: #FF5717;position: relative;left: 8%;top: 4%">Bright Blast</h3>
 		<br><br>
-		<ul style="color: white; position: relative;left: 5%;">
-			<li>Donec imperdiet vulputate elit, quis mollis erat porttitor eget. </li>
-			<li>Nam eleifend mi id urna convallis, eget commodo augue tristique.</li>
-			<li>Nullam iaculis, sem non rutrum accumsan, arcu libero ultricies lacus, tristique pulvinar.</li>
-			<li> Nunc eget tellus porta, semper arcu non, ultricies urna.</li>
+		<ul style="color: white; position: relative;left: 5%;max-width: 85%">
+			<li>The ultimate spell for crowd control. Upgrade and customize it as you see fit.</li>
 		</ul>
 	</div>
 	<div class="col-md-6" data-aos="fade-zoom-in" data-aos-duration="4000ms">
 		<!-- Image to display -->
-		<img src="assets/gameplay-anim.gif" class="img-responsive img-padding-right">
+		<img src="assets/gameplay-anim.gif" class="img-responsive img-padding-right imagescale">
 	</div>
-</div>
-
-<div class="row w-100 h-75">
-	<!-- Heading and Description section -->
-	<div class="col-md-6" data-aos="fade-right">
-		<br><br>
-		<h3 style="color: #FF5717;position: relative;left: 8%;top: 2%">Lorem ipsum dolor sit amet</h3>
-		<br><br>
-		<ul style="color: white; position: relative;left: 5%;">
-			<li>Donec imperdiet vulputate elit, quis mollis erat porttitor eget. </li>
-			<li>Nam eleifend mi id urna convallis, eget commodo augue tristique.</li>
-			<li>Nullam iaculis, sem non rutrum accumsan, arcu libero ultricies lacus, tristique pulvinar.</li>
-			<li> Nunc eget tellus porta, semper arcu non, ultricies urna.</li>
-		</ul>
-	</div>
+	<div class="row w-100 ">
 	<div class="col-md-6" data-aos="fade-zoom-in" data-aos-duration="4000ms">
 		<!-- Image to display -->
-		<img src="assets/gameplay3-anim.gif" class="img-responsive img-padding-right">
+		<img src="assets/gameplay3-anim.gif" class="img-responsive img-padding-left imagescale">
+	</div>
+	<!-- Heading and Description section -->
+	<div class="col-md-6" data-aos="fade-right">
+		<br><br>
+		<h3 style="color: #FF5717;position: relative;left: 8%;top: 4%">Halo Burst</h3>
+		<br><br>
+		<ul style="color: white; position: relative;left: 5%;">
+			<li>Your last hope to save you from tight situations. Upgrade this spell and add various effects to it as you progress. </li>
+		</ul>
+	</div>
+
 	</div>
 </div>
 
 
-<div class="row w-100 h-75">
+<div class="row w-100">
 	<!-- Heading and Description section -->
 	<div class="col-md-6" data-aos="fade-right">
 		<br><br>
-		<h3 style="color: #FF5717;position: relative;left: 8%;top: 2%">Lorem ipsum dolor sit amet</h3>
+		<h3 style="color: #FF5717;position: relative;left: 8%;top: 4%">Bright Beam</h3>
 		<br><br>
 		<ul style="color: white; position: relative;left: 5%;">
-			<li>Donec imperdiet vulputate elit, quis mollis erat porttitor eget. </li>
-			<li>Nam eleifend mi id urna convallis, eget commodo augue tristique.</li>
-			<li>Nullam iaculis, sem non rutrum accumsan, arcu libero ultricies lacus, tristique pulvinar.</li>
-			<li> Nunc eget tellus porta, semper arcu non, ultricies urna.</li>
+			<li>Your basic spell, cast it by moving the joystick to slay foes around you.</li>
 		</ul>
 		<!-- Button to get more info  -->
-		<button type="button" class="btn btn-lg dankhover button-pos" data-toggle="modal" data-target="#myModal">See More</button>
+		<!-- <button type="button" class="btn btn-lg dankhover button-pos" data-toggle="modal" data-target="#myModal">See More</button> -->
 	</div>
 	<div class="col-md-6" data-aos="fade-zoom-in" data-aos-duration="4000ms">
 		<!-- Image to display -->
-		<img src="assets/gameplay2-anim.gif" class="img-responsive img-padding-right">
+		<img src="assets/gameplay2-anim.gif" class="img-responsive img-padding-right imagescale">
 	</div>
 </div>
+</div>
+<br><br><br>
+
 
 <!-- Third Section -->
 
 <!-- Colored Divider - James appears to like this gay purple -->
-<div class="colorSection">
-</div>
+<!-- <div class="colorSection">
+</div> -->
 
 <!-- Row class that halves the screen between images and description/heading -->
-<div class="row w-100 h-75">
+<div class="col w-100 color-fade-right">
+	<br>
+	<h1 class="colorSectionText"><b><img src="assets/rune-glow.png" class="rune" style="transform: scaleX(-1);">Customization<img src="assets/rune-glow.png" class="rune" ></b></h1>
+	<div class="row w-100 h-50 ">
 	<div class="col-md-6" data-aos="fade-zoom-in" data-aos-duration="4000ms">
 		<!-- Image to display -->
-		<img src="assets/custom-anim.gif" class="img-responsive img-padding-left">
+		<img src="assets/custom-anim.gif" class="img-responsive img-padding-left imagescale">
 	</div>
 	<!-- Heading and Description section -->
-	<div class="col-md-6" data-aos="fade-left">
-		<h1 class="colorSectionText"><b>Customization</b></h1>
+	<div class="col-md-6" data-aos="fade-left" id="Customization">
+		
 		<br><br>
-		<h3 style="color: #FF5717;position: relative;left: 8%;top: 2%">Masks and Outfits</h3>
+		<h3 style="color: #FF5717;position: relative;left: 8%;top: 4%">Masks and Outfits</h3>
 		<br><br>
 		<ul style="color: white; position: relative;left: 5%;">
-			<li>Donec imperdiet vulputate elit, quis mollis erat porttitor eget. </li>
-			<li>Nam eleifend mi id urna convallis, eget commodo augue tristique.</li>
-			<li>Nullam iaculis, sem non rutrum accumsan, arcu libero ultricies lacus, tristique pulvinar.</li>
-			<li> Nunc eget tellus porta, semper arcu non, ultricies urna.</li>
+			<li>Equip a wide variety of ancient relics and armaments.</li>			
+			<li>Unlock more powerful outfits as you progress.</li>
+			<li>Harness the power of the Light. In style.</li>
 		</ul>
 
 	</div>
 </div>
 
-<div class="row w-100 h-75">
-	<div class="col-md-6" data-aos="fade-zoom-in" data-aos-duration="4000ms">
-		<!-- Image to display -->
-		<img src="assets/custom2-anim.gif" class="img-responsive img-padding-left">
-	</div>
+<div class="row w-100 h-50">
 	<!-- Heading and Description section -->
 	<div class="col-md-6" data-aos="fade-left">
 		<br><br>
-		<h3 style="color: #FF5717;position: relative;left: 8%;top: 2%">Items</h3>
+		<h3 style="color: #FF5717;position: relative;left: 8%;top: 4%">Items</h3>
 		<br><br>
 		<ul style="color: white; position: relative;left: 5%;">
-			<li>Donec imperdiet vulputate elit, quis mollis erat porttitor eget. </li>
-			<li>Nam eleifend mi id urna convallis, eget commodo augue tristique.</li>
-			<li>Nullam iaculis, sem non rutrum accumsan, arcu libero ultricies lacus, tristique pulvinar.</li>
-			<li> Nunc eget tellus porta, semper arcu non, ultricies urna.</li>
+			<li>Harness the power of the tribe of old.</li>
+			<li>Change the way you bear and wield the power of the Light.</li>
+			<li>You decide how to best save the world.</li>
 		</ul>
 				<!-- Button to get more info  -->
-		<button type="button" class="btn btn-lg dankhover button-pos"  data-toggle="modal" data-target="#myModal">See More</button>
+		<!-- <button type="button" class="btn btn-lg dankhover button-pos"  data-toggle="modal" data-target="#myModal">See More</button> -->
+	</div>
+	<div class="col-md-6" data-aos="fade-zoom-in" data-aos-duration="4000ms">
+		<!-- Image to display -->
+		<img src="assets/custom2-anim.gif" class="img-responsive img-padding-right imagescale">
 	</div>
 </div>
+</div>
+<br><br>
+<footer>
+     <div class="container-fluid bg-primary py-3">
+    <div class="container">
+      <div class="row">
+       <h2><a href="#">Top</a></h2>
+        <div class="col-md-5">
+          <div class="d-inline-block" style="position: relative;left: 85%">
+           
+            <div class="bg-circle-outline d-inline-block" style="background-color:#4099FF;text-align: center;">
+              <a href="https://twitter.com/SunnysideGames">
+                <i class="fab fa-twitter text-white"></i></a>
+            </div>
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">Extra Stuffs</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      </div>
-      <div class="modal-body" id="myModalBody" style="text-align: center;">
-        This is where additional information and text would come.This is where additional information and text would come.This is where additional information and text would come.This is where additional information and text would come.This is where additional information and text would come.This is where additional information and text would come.This is where additional information and text would come.This is where additional information and text would come.
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <div class="bg-circle-outline d-inline-block" style="background-color:#0077B5;text-align: center;">
+              <a href="https://www.linkedin.com/company/">
+                <i class="fab fa-linkedin text-white"></i></a>
+            </div>
+            <div class="bg-circle-outline d-inline-block" style="background-color:#d34836;text-align: center;">
+              <a href="https://www.youtube.com/channel/UCg2gzq-2qj4OlhkDkO1KDyg">
+                <i class="fab fa-youtube text-white"></i></a>
+            </div>
+            <div class="bg-circle-outline d-inline-block" style="background-color: green;text-align: center;">
+            	<a href="http://kck.st/2N36VWx">
+            		<i class="fab fa-kickstarter-k"></i>
+            	</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
+    </div>
+</footer>
+    <!--/.footer-->
+    <!--/.footer-bottom--> 
 	
 </div>
 <!-- end of big daddy -->
