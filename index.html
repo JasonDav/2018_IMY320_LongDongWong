@@ -30,6 +30,9 @@
 		console.log('Width: '+screenWidth);
 		console.log('Height: '+screenHeight);
 
+	    $('body').addClass('stop-scrolling');
+
+
 		AOS.init();
 		console.log('Enabled AoS');
 
@@ -59,8 +62,8 @@
 	    video.oncanplay = function() {
 	    	console.log('can play video - playing');
 
-		  
 		    document.getElementById("preloader-body").hidden = "true";
+		    $('body').removeClass('stop-scrolling');
 		    AOS.refresh();
 		    video.play();		  
 		}
@@ -142,6 +145,12 @@
 
 	#big-daddy-div{
 		/*visibility:  hidden;*/
+		/*width: 100%;*/
+	}
+
+	.stop-scrolling {
+  		height: 100%;
+  		overflow: hidden;
 	}
 
 	.center-image{
@@ -285,6 +294,7 @@
 
 	body{
 		height: 100%;
+		width: 100%;
 		/*width: 100%;*/
 		background-image: url("assets/bigguyopacity.png");
 		background-attachment: fixed;
@@ -308,7 +318,7 @@
 
 </style>
 </head>
-<body onload='init();' id="body" on>
+<body onload='init();' id="body">
 
 <!-- Preloader -->
 <div class='h-100 w-100' id="preloader-body" style="z-index: 2;">
@@ -331,14 +341,14 @@
 </div>
 
 <!-- Bid Daddy Div -->
-<div class="col h-100" id="big-daddy-div">
+<div class="col h-100 w-100" id="big-daddy-div">
 
 <div id="navmenu">
 	<ul style="list-style: none;">
 	<!-- <li><a href="#" onclick="scrollToStory();">Story</a> -->
-	<li><h5  class="fnav-link"><img src="assets/rune.png" class="navrune"> <a href="#Story"> Story</a></h3></li>
-	<li><h5  class="fnav-link"><img src="assets/rune.png" class="navrune"> <a href="#Gameplay"> Gameplay</a></h3></li>
-	<li><h5  class="fnav-link"><img src="assets/rune.png" class="navrune"> <a href="#Customization"> Customize</a></h3></li>
+	<li><h5  class="fnav-link"><img src="assets/rune.png" class="navrune"> <a href="#Story"> Story <img src="assets/rune.png" class="navrune" style="transform: scaleX(-1);"> <a href="#Story"></a></h3></li>
+	<li><h5  class="fnav-link"><img src="assets/rune.png" class="navrune"> <a href="#Gameplay"> Gameplay <img src="assets/rune.png" class="navrune" style="transform: scaleX(-1);"> <a href="#Story"></a></h3></li>
+	<li><h5  class="fnav-link"><img src="assets/rune.png" class="navrune"> <a href="#Customization"> Customize <img src="assets/rune.png" class="navrune" style="transform: scaleX(-1);"> <a href="#Story"></a></h3></li>
 	<li><img src="assets/mute.png" onclick="toggleMute();" style="cursor: pointer;"></li>
 	</ul>
 	
@@ -472,6 +482,8 @@
 		</ul>
 
 	</div>
+
+
 </div>
 
 <div class="row w-100 h-50">
@@ -493,6 +505,7 @@
 		<img src="assets/custom2-anim.gif" class="img-responsive img-padding-right imagescale">
 	</div>
 </div>
+
 </div>
 <br><br>
 <footer>
